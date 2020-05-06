@@ -1,4 +1,4 @@
-package com.lizzy.kyle.springboot.web;
+package com.lizzy.kyle.springboot.web.dto;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

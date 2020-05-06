@@ -1,6 +1,5 @@
 package com.lizzy.kyle.springboot.web.dto;
 
-import com.lizzy.kyle.springboot.web.HelloResponseDto;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
