@@ -1,6 +1,8 @@
 package com.lizzy.kyle.springboot.web;
 
 
+import com.lizzy.kyle.springboot.config.auth.dto.SessionUser;
+import com.lizzy.kyle.springboot.domamin.user.User;
 import com.lizzy.kyle.springboot.service.PostsService;
 import com.lizzy.kyle.springboot.web.dto.PostsResponseDto;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+
 
 import javax.servlet.http.HttpSession;
 
@@ -22,10 +26,10 @@ public class IndexController {
     public String index(Model model){
         model.addAttribute("posts", postsService.findAllDesc());
 
-        //SessionUser user = (SessionUser) httpSession.getAttribute("user");  //기존 코드
-//        if(user != null){
-//            model.addAttribute("userName", user.getName());
-//        }
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");  //기존 코드
+        if(user != null){
+            model.addAttribute("userName", user.getName());
+        }
 
         return "index";
     }
