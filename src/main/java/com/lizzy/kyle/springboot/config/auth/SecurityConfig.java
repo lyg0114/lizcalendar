@@ -9,7 +9,7 @@ import org.springframework.security.oauth2.client.userinfo.CustomUserTypesOAuth2
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 
 @RequiredArgsConstructor
-@EnableWebSecurity //Spring Security 설정들을 활성화 시켜 준다.
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final CustomOAuth2UserService customOAuth2UserService;
@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
     }
+}
 
     //antMatchers()
     // 1.권한 관리 대상을 지정하는 옵션
@@ -66,4 +67,3 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
 
-}
