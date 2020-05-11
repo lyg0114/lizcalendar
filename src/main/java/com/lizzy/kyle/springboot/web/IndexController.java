@@ -1,6 +1,7 @@
 package com.lizzy.kyle.springboot.web;
 
 
+import com.lizzy.kyle.springboot.config.auth.LoginUser;
 import com.lizzy.kyle.springboot.config.auth.dto.SessionUser;
 import com.lizzy.kyle.springboot.domamin.user.User;
 import com.lizzy.kyle.springboot.service.PostsService;
@@ -23,10 +24,10 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model){
+    public String index(Model model, @LoginUser SessionUser user){
         model.addAttribute("posts", postsService.findAllDesc());
 
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");  //기존 코드
+       //SessionUser user = (SessionUser) httpSession.getAttribute("user");  //기존 코드
         if(user != null){
             model.addAttribute("userName", user.getName());
         }
