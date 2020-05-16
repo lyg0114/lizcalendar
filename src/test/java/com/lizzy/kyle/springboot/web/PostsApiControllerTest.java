@@ -7,6 +7,7 @@ import com.lizzy.kyle.springboot.domamin.posts.Posts;
 import com.lizzy.kyle.springboot.domamin.posts.PostsRepository;
 import com.lizzy.kyle.springboot.web.dto.PostsSaveRequestDto;
 import com.lizzy.kyle.springboot.web.dto.PostsUpdateRequestDto;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -59,6 +60,7 @@ public class PostsApiControllerTest {
                 .build();
     }
 
+    @After
     public void tearDown() throws Exception{
         postsRepository.deleteAll();
     }
