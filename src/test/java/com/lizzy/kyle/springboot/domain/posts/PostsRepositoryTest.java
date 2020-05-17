@@ -14,14 +14,12 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class PostsRepositoryTest {
 
     @Autowired
     PostsRepository postsRepository;
-
 
     @After
     public void cleanup() {
@@ -49,7 +47,6 @@ public class PostsRepositoryTest {
         assertThat(posts.getContent()).isEqualTo(content);
     }
 
-
     @Test
     public void BaseTimeEntity_등록() {
         //given
@@ -70,6 +67,4 @@ public class PostsRepositoryTest {
         assertThat(posts.getCreatedDate()).isAfter(now);
         assertThat(posts.getModifiedDate()).isAfter(now);
     }
-
-
 }

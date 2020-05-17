@@ -28,8 +28,8 @@ public class HelloControllerTest {
     @Autowired
     private MockMvc mvc;
 
-    @Test
     @WithMockUser(roles="USER")
+    @Test
     public void hello가_리턴된다() throws Exception{
         String hello = "hello";
 
@@ -39,8 +39,8 @@ public class HelloControllerTest {
 
     }
 
-    @Test
     @WithMockUser(roles="USER")
+    @Test
     public void helloDto가_리턴된다() throws Exception{
         String name = "hello";
         int amount = 1000;
