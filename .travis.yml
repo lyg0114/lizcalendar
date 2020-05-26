@@ -16,8 +16,46 @@ cache:
 script: "./gradlew clean build"
 
 
+before_deploy:
+  - zip -r lizcalendar *
+  - mkdir -p deploy
+  - mv lizcalendar.zip deploy/lizcalendar.zip
+
+deploy:
+  - provider : s3
+    access_key_id: $AWS_ACCESS_KEY # Travis repo settings 에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY # Travis repo settings 에 설정된 값
+    bucket: lizcalendal-springboot-build #S3버킷
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private #zip 파일접근을 private 으로 설정
+    local_dir: deploy #before_deploy 에서 생성한 디렉토리
+    wait-until-deployed: true
+
+
 #CI 실행 완료 시 메일로 알람
 notifications:
   email:
     recipients:
       - whdnseowkd@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
