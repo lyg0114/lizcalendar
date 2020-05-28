@@ -19,7 +19,7 @@ script: "./gradlew clean build"
 before_deploy:
   - zip -r lizcalendar *
   - mkdir -p deploy
-  - mv lizcalendar.zip deploy/lizcalendar.zip
+  - mv lizcalendar.zip deploy/lizcalendal-springboot2-webservice.zip
 
 deploy:
   - provider : s3
@@ -31,6 +31,18 @@ deploy:
     acl: private #zip 파일접근을 private 으로 설정
     local_dir: deploy #before_deploy 에서 생성한 디렉토리
     wait-until-deployed: true
+
+   - provider: codedeploy
+     access_key_id: $AWS_ACCESS_KEY
+     secret_access_key: $AWS_SECRET_KEY
+
+     bucket: lizcalendal-springboot-build
+     key: lizcalendal-springboot2-webservice.zip
+     bundle_type: zip
+     application: lizcalendal-springboot2-webservice # 웹 콘솔에서 등록한 CodeDeploy 어플리케이션
+     deployment_group: lizcalendal-springboot2-webservice-group # 웹 콘솔에서 등록한 CodeDeploy 배포 그룹
+     region: ap-northeast-2
+     wait-until-deployed: true
 
 
 #CI 실행 완료 시 메일로 알람
